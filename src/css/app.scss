@@ -1,0 +1,487 @@
+// app global css in SCSS form
+
+// scss modules
+@use 'sass:map';
+
+@use './config.scss' as config;
+@use './utils.scss' as utils;
+
+/* === Base Styling === */
+// font family classes
+.font {
+  &-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+// parent dom styles
+html,
+body {
+  @extend .font-inter;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+// anchor tag overrides
+a {
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+// paragraph overrides
+p {
+  margin: 0;
+}
+
+// list overrides
+ul {
+  margin: 0;
+  padding: 0 0 0 $flex-gutter-md;
+}
+
+/* === Custom Classes === */
+.text-underline {
+  text-decoration: underline;
+}
+
+.field-shadow {
+  box-shadow: 0px 1px 2px rgba($grey-900, 0.05) !important;
+}
+
+.item-shadow {
+  box-shadow: 0px 0px 8px rgba(#000, 0.2) !important;
+}
+
+.card-shadow {
+  box-shadow: 0px 2px 8px rgba(#000, 0.25) !important;
+}
+
+.content-shadow {
+  box-shadow: 0px 4px 8px -2px rgba($grey-900, 0.1),
+    0px 2px 4px -2px rgba($grey-900, 0.06) !important;
+}
+
+.emphasis-shadow {
+  box-shadow: 0px 12px 16px -4px rgba($grey-900, 0.1),
+    0px 4px 6px -2px rgba($grey-900, 0.05) !important;
+}
+
+.highlight-shadow {
+  box-shadow: 0px 0px 12px 6px $primary-500 !important;
+}
+
+.header-shadow {
+  box-shadow: 0px 4px 4px rgba($grey-900, 0.2);
+}
+
+.menu-shadow {
+  box-shadow: 0px 12px 16px -4px rgba($grey-900, 0.1);
+}
+
+/* === Quasar component overrids === */
+// q-item overrides
+.q-item {
+  min-height: 0;
+
+  &__label {
+    line-height: inherit !important;
+  }
+}
+
+// q-btn overrides
+.q-btn {
+  &:not(&--flat) {
+    @extend .field-shadow;
+  }
+}
+
+//q-date overrides
+.q-date {
+  min-width: 340px;
+  padding: 8px;
+
+  @media all and (max-width: 375px) {
+    min-width: 290px;
+  }
+
+  .q-btn {
+    border-radius: 4px;
+    box-shadow: none;
+  }
+
+  .q-date__view {
+    padding: 0;
+  }
+
+  .q-date__calendar-item {
+    .q-btn {
+      width: 36px;
+      padding: 4px;
+
+      @media all and (max-width: 375px) {
+        width: 33px;
+      }
+    }
+  }
+}
+
+// q-field overrides
+.q-field {
+  @include utils.fontStyles($body1);
+
+  &--error {
+    .q-field__control {
+      color: $negative-300 !important;
+    }
+
+    .q-field__append,
+    .q-field__marginal {
+      .q-icon {
+        color: $negative-400 !important;
+      }
+    }
+  }
+
+  & {
+    .q-field--auto-height {
+      .q-field__control,
+      .q-field__native {
+        min-height: 0;
+      }
+    }
+
+    .q-field__control {
+      height: auto;
+      @extend .field-shadow;
+
+      .q-field__prepend {
+        padding-right: $flex-gutter-xs !important;
+      }
+
+      .q-field__marginal {
+        height: auto;
+        font-size: inherit;
+      }
+    }
+
+    .q-field__bottom {
+      @include utils.fontStylesWithWeight($body2);
+      padding: $flex-gutter-2xs 0 0;
+    }
+  }
+
+  &--standard {
+    .q-field__control {
+      padding: $flex-gutter-3sm $flex-gutter-sm;
+      color: $primary;
+
+      &::before {
+        border-color: $primary;
+      }
+
+      .q-field__native {
+        color: $primary;
+      }
+
+      .q-field__append {
+        color: $primary;
+      }
+    }
+  }
+
+  &--outlined {
+    .q-field__control {
+      padding: $flex-gutter-3sm $flex-gutter-sm;
+      color: $grey-700;
+
+      &::before {
+        border-color: $grey-200;
+      }
+
+      &:hover {
+        &::before {
+          border-color: currentColor;
+        }
+      }
+
+      &-container {
+        padding: 0;
+
+        .q-field__native {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  &__native {
+    padding: 0;
+    line-height: inherit;
+    color: $grey-800;
+
+    &.q-placeholder,
+    .q-placeholder {
+      &::placeholder {
+        color: $grey-600 !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  // q-select overrides
+  &.q-select {
+    .q-field__native {
+      // prevent wrapping to next line
+      flex-wrap: nowrap;
+      padding: 0;
+      line-height: inherit;
+
+      & > span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    &.q-field--focused {
+      .q-field__input {
+        min-width: 50px !important;
+      }
+    }
+
+    .q-field__input {
+      min-width: 0 !important;
+    }
+  }
+
+  &.q-field--outlined {
+    .q-field__append {
+      .q-icon {
+        color: $grey-600;
+      }
+    }
+  }
+}
+
+// q-table overirdes
+.q-table__container {
+  .q-table__top {
+    background: $grey-25;
+    border-bottom: 1px solid $grey-200;
+    padding: 16px 24px;
+  }
+
+  .q-table__bottom {
+    padding: 0px;
+    border-top: 1px solid $grey-200;
+    height: 68px;
+
+    & > div.relative-position {
+      width: 100%;
+      height: 100%;
+
+      & > .q-pagination.text-body2 {
+        margin-top: 9px;
+        margin-bottom: 14px;
+      }
+
+      & > .text-body2 {
+        margin-top: 19px;
+        margin-bottom: 20px;
+      }
+
+      & > .absolute-left {
+        padding: 13px 0 18px 24px;
+      }
+
+      & > .absolute-right {
+        padding: 13px 24px 18px 0;
+
+        & .btn {
+          box-sizing: border-box;
+          height: 36px;
+        }
+      }
+    }
+  }
+
+  .q-table__bottom--nodata {
+    border-top: 0px;
+    height: auto;
+  }
+}
+
+.q-table {
+  thead {
+    tr {
+      height: 44px;
+    }
+
+    th {
+      padding: 13px 24px;
+    }
+  }
+
+  tbody {
+    td {
+      height: 72px;
+      padding: 16px 24px;
+
+      &.cell-wrap {
+        white-space: normal;
+      }
+    }
+  }
+
+  thead,
+  tr,
+  th,
+  td {
+    border-color: $grey-200;
+  }
+
+  &--horizontal-separator {
+    thead th,
+    tbody tr:not(:last-child) > td {
+      border-bottom-width: 1px;
+    }
+  }
+}
+
+// q-dialog overrides
+.q-dialog {
+  // background backdrop override for dialog backdrop
+  .q-dialog__backdrop {
+    background: rgba($grey-700, 0.6);
+    backdrop-filter: blur(16px);
+  }
+
+  &__inner {
+    &--minimized {
+      padding: $flex-gutter-md;
+    }
+  }
+}
+
+@each $name, $value in config.$theme-colors {
+  @each $name, $value in config.$theme-colors {
+    @if type-of($value) == map {
+      // text-color
+      .text-#{$name} {
+        color: map.get($value, '600') !important;
+      }
+
+      // bg-color
+      .bg-#{$name} {
+        background: map.get($value, '600') !important;
+      }
+
+      // border-color
+      .border-#{$name} {
+        border-color: map.get($value, '600') !important;
+      }
+
+      // stroke-color
+      .stroke-#{$name} {
+        stroke: map.get($value, '600') !important;
+      }
+
+      @each $variant, $color in $value {
+        // text-color
+        .text-#{$name}-#{$variant} {
+          color: $color !important;
+        }
+
+        // bg-color
+        .bg-#{$name}-#{$variant} {
+          background: $color !important;
+        }
+
+        // border-color
+        .border-#{$name}-#{$variant} {
+          border-color: $color !important;
+        }
+
+        // stroke-color
+        // stroke-color
+        .stroke-#{$name}-#{$variant} {
+          stroke: $color !important;
+        }
+      }
+    } @else {
+      // text-color
+      .text-#{$name} {
+        color: $value !important;
+      }
+
+      // bg-color
+      .bg-#{$name} {
+        background: $value !important;
+      }
+
+      // border-color
+      .border-#{$name} {
+        border-color: $value !important;
+      }
+
+      // stroke-color
+      .stroke-#{$name} {
+        stroke: $value !important;
+      }
+    }
+  }
+}
+
+// border, border-width classes
+@each $side, $side-value in config.$box-sides {
+  @if type-of($side-value) == list {
+    .border-#{$side} {
+      @each $part in $side-value {
+        border-#{$part}-width: 1px;
+        border-#{$part}-style: solid;
+      }
+    }
+    @each $size in config.$border-sizes {
+      .border-#{$side}-#{$size} {
+        @each $part in $side-value {
+          border-#{$part}-width: #{$size}px;
+          border-#{$part}-style: solid;
+        }
+      }
+    }
+  } @else {
+    .border-#{$side} {
+      border-#{$side-value}-width: 1px;
+      border-#{$side-value}-style: solid;
+    }
+
+    @each $size in config.$border-sizes {
+      .border-#{$side}-#{$size} {
+        border-#{$side-value}-width: #{$size}px;
+        border-#{$side-value}-style: solid;
+      }
+    }
+  }
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+// rounded-borders classes - taking sizes from flex-gutter (upto 5xl)
+@each $size, $value in $flex-gutter {
+  .rounded-borders-#{$size} {
+    border-radius: $value !important;
+  }
+}
+
+.rounded-borders-full {
+  border-radius: 100% !important;
+}

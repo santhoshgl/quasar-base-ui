@@ -1,0 +1,116 @@
+// -------- variables -----------
+// primary color variants map
+$primary-variants: (
+  '25': #f7f7fe,
+  '50': #efeefd,
+  '100': #e0ddfc,
+  '200': #d1cdfa,
+  '300': #c1bcf8,
+  '400': #b2abf7,
+  '500': #a29af5,
+  '600': #6457ee,
+  '700': #5046be,
+  '800': #3c348f,
+  '900': #28235f
+);
+
+// secondary color variants map
+$secondary-variants: (
+  '25': #f7f7fe,
+  '50': #efeefd,
+  '100': #e0ddfc,
+  '200': #d1cdfa,
+  '300': #c1bcf8,
+  '400': #b2abf7,
+  '500': #a29af5,
+  '600': #6457ee,
+  '700': #5046be,
+  '800': #3c348f,
+  '900': #28235f
+);
+
+// grey color variants map
+$grey-variants: (
+  '25': #fcfcfd,
+  '50': #f9fafb,
+  '100': #f2f4f7,
+  '200': #e4e7ec,
+  '300': #d0d5dd,
+  '400': #98a2b3,
+  '500': #667085,
+  '600': #475467,
+  '700': #344054,
+  '800': #1d2939,
+  '900': #101828
+);
+
+// positive color variants map
+$positive-variants: (
+  '25': #f6fef9,
+  '50': #ecfdf3,
+  '100': #d1fadf,
+  '200': #a6f4c5,
+  '300': #6ce9a6,
+  '400': #32d583,
+  '500': #12b76a,
+  '600': #039855,
+  '700': #027a48,
+  '800': #05603a,
+  '900': #054f31
+);
+
+// warning color variants map
+$warning-variants: (
+  '25': #fffcf5,
+  '50': #fffaeb,
+  '100': #fef0c7,
+  '200': #fedf89,
+  '300': #fec84b,
+  '400': #fdb022,
+  '500': #f79009,
+  '600': #dc6803,
+  '700': #b54708,
+  '800': #93370d,
+  '900': #7a2e0e
+);
+
+// negative color variants map
+$negative-variants: (
+  '25': #fffbfa,
+  '50': #fef3f2,
+  '100': #fee4e2,
+  '200': #fecdca,
+  '300': #fda29b,
+  '400': #f97066,
+  '500': #f04438,
+  '600': #d92d20,
+  '700': #b42318,
+  '800': #912018,
+  '900': #7a271a
+);
+
+// theme colors
+// combination of single color as well as variants map
+
+$theme-colors: (
+  'primary': $primary-variants,
+  'secondary': $secondary-variants,
+  'grey': $grey-variants,
+  'positive': $positive-variants,
+  'warning': $warning-variants,
+  'negative': $negative-variants
+);
+
+// box model side values
+$box-sides: (
+  't': top,
+  'b': bottom,
+  'l': left,
+  'r': right,
+  'x': [left right],
+  'y': [top bottom],
+  'a': [top right bottom left]
+);
+
+// border sizes
+$border-sizes: 2, 4, 8;
